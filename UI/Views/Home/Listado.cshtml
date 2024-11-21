@@ -1,0 +1,81 @@
+﻿@model UI.Models.ViewModels.PersonaConNombreDepartamentosVM
+
+<h1>Listado de Personas</h1>
+
+<p>
+    <a asp-action="Crear">Crear persona</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].NombreDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].FechaNac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].IdDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personas[0].Telefono)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Personas)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDepartamento)
+            </td>
+            <td>
+                <img src="@item.Foto" alt="Foto de @item.Nombre" style="width:104px;height:142px;"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "Detalles", new { id = item.Id }) |
+                    @Html.ActionLink("Borrar", "Borrar", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
