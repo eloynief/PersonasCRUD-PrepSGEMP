@@ -1,0 +1,129 @@
+Programa: PersonasCRUD
+	
+	Controllers:
+        + class HomeController : Controller
+			//devuelven las vistas de index y editar persona
+            + ListadoPersonas():IActionResult
+            + EditarPersona():IActionResult
+			+ Detalles(int id):IActionResult
+			+ Detalles(int id):IActionResult
+
+	Models:
+		Entities:
+			ClsPersona
+				//atributos
+				- id:int
+				- nombre:string
+				- apellido:string
+				- fechaNac:DateTime
+				- direccion:string
+				- foto:string
+				- telefono:string
+				- idDepartamento:int
+
+				//propiedades
+				+ Id:int {get set}
+				+ Nombre:string {get set}
+				+ Apellido:string {get set}
+				+ FechaNac:DateTime {get set}
+				+ Direccion:string {get set}
+				+ Foto:string {get set}
+				+ Telefono:string {get set}
+				+ IdDepartamento:int {get set}
+
+				//constructores
+				+ ClsPersona()
+				+ ClsPersona(int id, string nombre, string apellido, DateTime fechaNac, string direccion, string foto, string telefono, int idDepartamento) // Constructor con parámetros
+
+			ClsDepartamento
+				//atributos
+				- id:int
+				- nombre:string
+
+				//propiedades
+				+ Id:int {get set}
+				+ Nombre:string {get set}
+
+				//constructores
+				+ ClsDepartamento()
+				+ ClsDepartamento(int id, string nombre) // Constructor con parámetros
+
+		DAL:
+			+ class Listados
+				//devuelve un listado de personas creadas
+				+ static listadoPersonas():List<ClsPersona>
+				//devuelve un listado de departamentos creados
+				+ static listadoDepartamentos():List<ClsDepartamento>
+
+
+			+ class Acciones
+			
+				+ static CrearPersonaDAL(int id)
+				+ static EditarPersonaDAL(int id)
+				+ static DeletePersonaDAL(int id)
+
+			+ class EnlaceBBDD:
+				+ static getConexion():SqlConnection
+				+ static enlace(string server, string baseDatos, string usuario, string contrasena):string
+
+		BL:
+			
+			+ class ListadosBL
+				//devuelve un listado de personas creadas
+				+ static listadoPersonasBL():List<ClsPersona>
+				//devuelve un listado de departamentos creados
+				+ static listadoDepartamentosBL():List<ClsDepartamento>
+
+
+			+ class Acciones
+			
+				CrearPersonaBL(int id)
+				EditarPersonaBL(int id)
+				DeletePersonaBL(int id)
+
+
+
+		(Modelos para la vista)
+
+		Models:
+			
+			+ class PersonaConNombreDepartamento:ClsPersona
+				
+				//atributos
+				- nombreDepartamento:string
+
+				//propiedades
+				+ NombreDepartamento:string{get}
+
+				//constructor con parametros
+				+ PersonaConNombreDepartamento(string nombreDepartamento):base(persona.Id, persona.Nombre, persona.Apellido, persona.FechaNac, persona.Direccion, persona.Foto, persona.Telefono, persona.IdDepartamento)
+				
+
+
+		ViewModels:
+			//ViewModel
+			+ class ClsPersonaConListaDepartamentos: ClsPersona (Herencia)
+
+				//atributos
+				- listadoDepartamentos:List<ClsDepartamento>
+
+				//propiedades
+				+ ListadoDepartamentos:List<ClsDepartamento>{get}
+
+				//constructor con parametros
+				+ ClsPersonaConListaDepartamentos(ClsPersona persona, List<ClsDepartamento>listadoDepartamentos):base(persona.Id, persona.Nombre, persona.Apellido, persona.FechaNac, persona.Direccion, persona.Foto, persona.Telefono, persona.IdDepartamento)
+
+
+			+ class PersonaConNombreDepartamentoVM:ClsPersona
+				+ Personas:List<PersonaConNombreDepartamento>
+
+				+ PersonaConNombreDepartamentosVM(List<PersonaConNombreDepartamento> personas)
+				
+
+	Views (cshtml):
+		Home
+			CrearPersona //usando el model de PersonaConNombreDepartamento
+			ListadoPersonas //usando el viewmodel de PersonaConNombreDepartamentosVM
+			EditarPersona //usando el viewmodel de ClsPersonaConListaDepartamentos
+			Detalles //usando el model de PersonaConNombreDepartamento
+			BorrarPersona //usando el model de PersonaConNombreDepartamento
