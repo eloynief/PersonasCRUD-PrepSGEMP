@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Text", "Text", "{E96D0E26-4
 		MiTexto.txt = MiTexto.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI-MAUI", "UI-MAUI\UI-MAUI.csproj", "{4F6D2963-9DBF-4653-B3D8-187727924EF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,12 @@ Global
 		{2D02B8D4-265E-46B5-92CB-8590C45452EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D02B8D4-265E-46B5-92CB-8590C45452EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D02B8D4-265E-46B5-92CB-8590C45452EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6D2963-9DBF-4653-B3D8-187727924EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6D2963-9DBF-4653-B3D8-187727924EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6D2963-9DBF-4653-B3D8-187727924EF8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4F6D2963-9DBF-4653-B3D8-187727924EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6D2963-9DBF-4653-B3D8-187727924EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6D2963-9DBF-4653-B3D8-187727924EF8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
