@@ -7,9 +7,25 @@
     Shell.FlyoutBehavior="Disabled"
     Title="UI_MAUI">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
+        <Tab Title="Ejercicios" Icon="icono.png" >
+
+            <ShellContent
+            Title="EJ1"
+            ContentTemplate="{DataTemplate local:Views.MainPage}"
+            Route="MainPage" />
+
+
+            <ShellContent
+            Title="Listado"
+            ContentTemplate="{DataTemplate local:Views.Listado}"
+            Route="MainPage" />
+
+
+        </Tab>
+
+
+
+    </FlyoutItem>
 </Shell>

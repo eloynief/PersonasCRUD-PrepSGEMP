@@ -16,54 +16,74 @@ namespace DAL
         /// Función para obtener el listado de personas de la base de datos
         /// </summary>
         /// <returns></returns>
+
+        private static SqlCommand miComando = new SqlCommand();
+        private static SqlDataReader miLector;
+
         public static List<Persona> ListadoPersonasAZURE()
         {
-            SqlCommand miComando = new SqlCommand();
-            SqlDataReader miLector;
+            SqlConnection miConexion = new SqlConnection();
+
+            //se crea la lista de personas
             List<Persona> listado = new List<Persona>();
+
+
             Persona oPersona;
 
+
+
+
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
             try
             {
-                // Usamos getConexion() para obtener la conexión
-                using (SqlConnection miConexion = EnlaceBBDD.getConexion())
+                miConexion.Open();
+                //Creamos el comando (Creamos el comando, le pasamos la sentencia y la conexion, y lo ejecutamos)
+                miComando.CommandText = "SELECT * FROM personas";
+                miComando.Connection = miConexion;
+                miLector = miComando.ExecuteReader();
+
+                if (miLector.HasRows)
+
                 {
-                    // Creamos el comando para ejecutar la consulta
-                    miComando.CommandText = "SELECT * FROM Personas";
-                    miComando.Connection = miConexion;
 
-                    // Ejecutamos la consulta y obtenemos los resultados
-                    miLector = miComando.ExecuteReader();
+                    while (miLector.Read())
 
-                    if (miLector.HasRows)
                     {
-                        while (miLector.Read())
-                        {
-                            oPersona = new Persona
-                            {
-                                Id = (int)miLector["ID"],
-                                Nombre = (string)miLector["Nombre"],
-                                Apellido = (string)miLector["Apellidos"],
-                                FechaNac = miLector["FechaNacimiento"] != DBNull.Value ? (DateTime)miLector["FechaNacimiento"] : default,
-                                Direccion = (string)miLector["Direccion"],
-                                Telefono = (string)miLector["Telefono"],
-                                IdDepartamento = (int)miLector["IDDepartamento"]
-                            };
+                        oPersona = new Persona();
+                        oPersona.Id = (int)miLector["ID"];
+                        oPersona.Nombre = (string)miLector["Nombre"];
+                        oPersona.Apellido = (string)miLector["Apellidos"];
 
-                            listado.Add(oPersona);
+                        if (miLector["FechaNacimiento"] != System.DBNull.Value)
+                        {
+                            oPersona.FechaNac = (DateTime)miLector["FechaNacimiento"];
                         }
+
+                        oPersona.Direccion = (string)miLector["Direccion"];
+
+                        oPersona.Telefono = (string)miLector["Telefono"];
+                        oPersona.IdDepartamento = (int)miLector["IDDepartamento"];
+
+                        listado.Add(oPersona);
                     }
+
+                    miLector.Close();
+
+                    miConexion.Close();
+
                 }
+
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error al obtener el listado de personas", ex);
+                //throw ex;
             }
-
+            finally
+            {
+                miConexion.Close();
+            }
             return listado;
         }
-
-
 
 
 
@@ -73,45 +93,57 @@ namespace DAL
         /// <returns></returns>
         public static List<Departamento> ListadoDepartamentosAZURE()
         {
-            SqlCommand miComando = new SqlCommand();
-            SqlDataReader miLector;
+            // Se crea la lista de departamentos
             List<Departamento> listado = new List<Departamento>();
-            Departamento oDepartamento;
+            SqlConnection miConexion = new SqlConnection();
+
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
 
             try
             {
-                // Usamos getConexion() para obtener la conexión
-                using (SqlConnection miConexion = EnlaceBBDD.getConexion())
+                miConexion.Open();
+
+                // Creamos el comando
+                SqlCommand miComando = new SqlCommand();
+                miComando.CommandText = "SELECT * FROM Departamentos";
+                miComando.Connection = miConexion;
+
+                // Ejecutamos el comando y obtenemos el lector
+                SqlDataReader miLector = miComando.ExecuteReader();
+
+                // Si hay filas, las leemos y las añadimos a la lista
+                if (miLector.HasRows)
                 {
-                    // Creamos el comando para ejecutar la consulta
-                    miComando.CommandText = "SELECT * FROM Departamentos";
-                    miComando.Connection = miConexion;
-
-                    // Ejecutamos la consulta y obtenemos los resultados
-                    miLector = miComando.ExecuteReader();
-
-                    if (miLector.HasRows)
+                    while (miLector.Read())
                     {
-                        while (miLector.Read())
+                        Departamento oDepartamento = new Departamento
                         {
-                            oDepartamento = new Departamento
-                            {
-                                Id = (int)miLector["ID"],
-                                Nombre = (string)miLector["Nombre"]
-                            };
+                            Id = (int)miLector["ID"],
+                            Nombre = (string)miLector["Nombre"]
+                        };
 
-                            listado.Add(oDepartamento);
-                        }
+                        listado.Add(oDepartamento);
                     }
                 }
+
+                // Cerramos el lector y la conexión
+                miLector.Close();
+                miConexion.Close();
+
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error al obtener el listado de departamentos", ex);
+                // Manejo de excepciones, puedes registrar el error aquí si es necesario
+                //throw ex;
+            }
+            finally
+            {
+                miConexion.Close();
             }
 
             return listado;
         }
+
 
 
 

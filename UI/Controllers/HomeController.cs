@@ -9,127 +9,66 @@ namespace UI.Controllers
 {
     public class HomeController : Controller
     {
-
-        // GET: PersonasController
-        public ActionResult Listado()
+        public IActionResult ListadoPersonas()
         {
+            List<PersonaConNombreDepartamento> personaConNombres = new PersonaConNombreDepartamentosVM().Personas;
+            return View(personaConNombres);
+        }
 
-            // Obtener lista de personas desde la BL
-            List<Persona> personas;
-            // Crear el ViewModel
-            PersonaConNombreDepartamentosVM viewModel = null;
-            try
-            {
-                personas = ListadosBL.ListadoPersonasBL();
 
-                // Transformar cada Persona en PersonaConNombreDepartamento
-                List<PersonaConNombreDepartamento> personasConDepartamento = personas
-                    .Select(persona =>
-                    {
-                        return new PersonaConNombreDepartamento(persona);
-                    })
-                    .ToList();
 
-                viewModel = new PersonaConNombreDepartamentosVM(personasConDepartamento);
-            }
-            catch (Exception ex)
-            {
-                // Pasar el error a la vista si no obtiene valor
-                return View("MiError");
-            }
+        public IActionResult EditarPersona(int id)
+        {
+            var persona = ListadosBL.ListadoPersonasBL().FirstOrDefault(p => p.Id == id);
+            var departamentos = ListadosBL.ListadoDepartamentosBL();
+            if (persona == null) return NotFound();
 
-            // Pasar el ViewModel a la vista
+            var viewModel = new PersonaConListaDepartamentos(persona, departamentos);
             return View(viewModel);
-
         }
 
-
-
-
-
-        // GET: aController/Details/5
-        public ActionResult Detalles(int id)
+        public IActionResult Detalles(int id)
         {
-
-
-            // Obtener persona aleatoria
-            Persona persona = BL.ListadosBL.ObtenerPersonaPorId(id);
-
-
-            // Crear el ViewModel
-            PersonaConNombreDepartamento miPersona = new PersonaConNombreDepartamento(persona);
-
-            //retornamos la vista con la persona del ViewModel
-            return View(miPersona);
+            Persona personas = ListadosBL.ObtenerPersonaPorIdBL(id);
+            PersonaConNombreDepartamento personasConDepartamentos =new PersonaConNombreDepartamento(personas);
+            return View(personasConDepartamentos);
         }
 
+        public IActionResult CrearPersona()
+        { 
+            // Obtener el listado de departamentos desde la lógica de negocio
+            var departamentos = ListadosBL.ListadoDepartamentosBL();
 
+            // Crear el ViewModel con una lista de departamentos
+            var viewModel = new PersonaConListaDepartamentos(
+                new Persona(),
+                departamentos
+            );
 
-
-
-
-
-        // GET: Controller/Edit/5
-        public ActionResult Edit(int id)
-        {
-
-            // Obtener persona aleatoria
-            Persona persona =BL.ListadosBL.ObtenerPersonaPorId(id);
-
-            // Obtener listado de departamentos
-            List<Departamento> departamentos = BL.ListadosBL.ListadoDepartamentosBL();
-
-            // Crear el ViewModel
-            PersonaConListaDepartamentos miPersona = new PersonaConListaDepartamentos(persona, departamentos);
-
-            //retornamos la vista con la persona del ViewModel
-            return View(miPersona);
+            return View(viewModel);
         }
-
-        // POST: Controller/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Eliminar(int id)
+        public IActionResult CrearPersona(Persona persona)
         {
-            try
-            {
-                // Llamamos al método DAL para eliminar la persona
-                int filasEliminadas = AccionesBL.DeletePersonaBL(id);
-
-                if (filasEliminadas > 0)
-                {
-                    // Redirigir a la vista de listado de personas si se eliminó correctamente.
-                    return RedirectToAction("Listado");
-                }
-                else
-                {
-                    // Mostrar un mensaje de error si no se eliminó nada.
-                    ViewBag.Error = "No se encontró la persona para eliminar.";
-                    return View("Error");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Capturar y manejar el error adecuadamente.
-                ViewBag.Error = "Error al eliminar la persona.";
-                return View("MiError");
-            }
+            BL.AccionesBL.CrearPersonaBL(persona);
+            return RedirectToAction("ListadoPersonas");
         }
+
+        public IActionResult BorrarPersona(int id)
+        {
+            Persona personas = ListadosBL.ObtenerPersonaPorIdBL(id);
+            PersonaConNombreDepartamento personasConDepartamentos = new PersonaConNombreDepartamento(personas);
+            return View(personasConDepartamentos);
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmarBorrado(int id)
+        {
+            BL.AccionesBL.DeletePersonaBL(id);
+            return RedirectToAction("ListadoPersonas");
+        }
+
 
 
 

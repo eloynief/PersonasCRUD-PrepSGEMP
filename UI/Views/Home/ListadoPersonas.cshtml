@@ -1,47 +1,49 @@
-﻿@model UI.Models.ViewModels.PersonaConNombreDepartamentosVM
+﻿@model IEnumerable<UI.Models.PersonaConNombreDepartamento>
 
-<h1>Listado de Personas</h1>
+@{
+    ViewData["Title"] = "ListadoPersonas";
+}
+
+<h1>ListadoPersonas</h1>
 
 <p>
-    <a asp-action="Crear">Crear persona</a>
+    <a asp-action="CrearPersona">Create New</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].NombreDepartamento)
+                @Html.DisplayNameFor(model => model.NombreDepartamento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].Id)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].Nombre)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].Apellido)
+                @Html.DisplayNameFor(model => model.Apellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].FechaNac)
+                @Html.DisplayNameFor(model => model.FechaNac)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].IdDepartamento)
+                @Html.DisplayNameFor(model => model.IdDepartamento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].Foto)
+                @Html.DisplayNameFor(model => model.Foto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].Direccion)
+                @Html.DisplayNameFor(model => model.Direccion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personas[0].Telefono)
+                @Html.DisplayNameFor(model => model.Telefono)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Personas)
-    {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreDepartamento)
@@ -62,7 +64,7 @@
                 @Html.DisplayFor(modelItem => item.IdDepartamento)
             </td>
             <td>
-                <img src="@item.Foto" alt="Foto de @item.Nombre" style="width:104px;height:142px;"/>
+                <img src="@item.Foto" alt="Foto" style="width:104px;height:142px;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Direccion)
@@ -71,11 +73,11 @@
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                    @Html.ActionLink("Detalles", "Detalles", new { id = item.Id }) |
-                    @Html.ActionLink("Borrar", "Borrar", new { id = item.Id })
+                    @Html.ActionLink("Edit", "EditarPersona", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Detalles", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "BorrarPersona", new { id = item.Id })
             </td>
         </tr>
-    }
+}
     </tbody>
 </table>

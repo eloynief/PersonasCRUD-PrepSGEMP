@@ -46,7 +46,7 @@ namespace BL
         /// </summary>
         /// <param name="idPersona"></param>
         /// <returns></returns>
-        public static Persona ObtenerPersonaPorId(int idPersona)
+        public static Persona ObtenerPersonaPorIdBL(int idPersona)
         {
             return Listados.ObtenerPersonaPorId(idPersona);
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,13 @@ namespace BL
 {
     public class AccionesBL
     {
+
+        public static bool CrearPersonaBL(Persona persona)
+        {
+            return Acciones.CrearPersonaDAL(persona);
+        }
+
+
 
 
         public static int DeletePersonaBL(int id)

@@ -6,7 +6,7 @@
 
 <h2>Editar Persona</h2>
 
-<form method="post">
+<form method="post" asp-action="ListadoPersonas">
 
     <div class="form-group">
         <label asp-for="Nombre" class="control-label"></label>
@@ -55,7 +55,7 @@
                 }
                 -->
                 <!-- selected puede considerarse como selected o null asi que si haces esta comprobacion puede -->
-                <option value="departamento.Id" selected="@(Model.Id == departamento.Id ? "selected" : null)" > @departamento.Nombre </option>
+                <option value="@departamento.Id" selected="@(Model.Id == departamento.Id ? "selected" : null)" > @departamento.Nombre </option>
             }
         </select>
         <span asp-validation-for="IdDepartamento" class="text-danger"></span>
@@ -66,4 +66,4 @@
     </div>
 </form>
 
-<a asp-action="Index">Volver al Listado</a>
+<a asp-action="ListadoPersonas">Volver al Listado</a>

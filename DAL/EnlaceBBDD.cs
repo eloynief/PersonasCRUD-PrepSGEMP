@@ -34,7 +34,7 @@ namespace DAL
                 conexion.ConnectionString = enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
 
                 // Abre la conexion
-                conexion.Open();
+                //conexion.Open();
             }
             catch (Exception ex)
             {
