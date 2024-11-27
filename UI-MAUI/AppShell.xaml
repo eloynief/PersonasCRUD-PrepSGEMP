@@ -11,15 +11,15 @@
 
         <Tab Title="Ejercicios" Icon="icono.png" >
 
-            <ShellContent
-            Title="EJ1"
-            ContentTemplate="{DataTemplate local:Views.MainPage}"
-            Route="MainPage" />
-
 
             <ShellContent
             Title="Listado"
             ContentTemplate="{DataTemplate local:Views.Listado}"
+            Route="MainPage" />
+
+            <ShellContent
+            Title="EJ1"
+            ContentTemplate="{DataTemplate local:Views.MainPage}"
             Route="MainPage" />
 
 

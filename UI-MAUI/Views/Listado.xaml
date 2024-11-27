@@ -6,20 +6,41 @@
              Title="Listado">
 
     <ContentPage.BindingContext>
-        <miViewmodelA:PersonaConNombreDepartamento></miViewmodelA:PersonaConNombreDepartamento>
+        <miViewmodelA:PersonaVM></miViewmodelA:PersonaVM>
     </ContentPage.BindingContext>
-    
+
+
+    <ScrollView>
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        
-        
-        
+
+        <ListView Grid.Row="0" Grid.Column="0"
+                      ItemsSource="{Binding Personas}" 
+                      SelectedItem="{Binding PersonaSeleccionada}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame>
+
+                            <HorizontalStackLayout>
+                                <Image Source="{Binding Foto}" HeightRequest="60" WidthRequest="60" Aspect="AspectFill" />
+                                <Label Text="{Binding Id}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                <Label Text="{Binding Nombre}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                <Label Text="{Binding Apellido}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18" TextColor="#666" />
+                                <Label Text="{Binding Direccion}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                <Label Text="{Binding FechaNac}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                <Label Text="{Binding IdDepartamento}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" TextColor="#666" />
+                            </HorizontalStackLayout>
+                            
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         
         
         
     </VerticalStackLayout>
+
+    </ScrollView>
+
 </ContentPage>

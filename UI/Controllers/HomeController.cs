@@ -26,6 +26,12 @@ namespace UI.Controllers
             var viewModel = new PersonaConListaDepartamentos(persona, departamentos);
             return View(viewModel);
         }
+        [HttpPost]
+        public IActionResult EditarPersona(Persona persona)
+        {
+            AccionesBL.EditarPersonaBL(persona);
+            return RedirectToAction("ListadoPersonas");
+        }
 
         public IActionResult Detalles(int id)
         {
@@ -51,7 +57,7 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult CrearPersona(Persona persona)
         {
-            BL.AccionesBL.CrearPersonaBL(persona);
+            AccionesBL.CrearPersonaBL(persona);
             return RedirectToAction("ListadoPersonas");
         }
 
@@ -65,7 +71,7 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult ConfirmarBorrado(int id)
         {
-            BL.AccionesBL.DeletePersonaBL(id);
+            AccionesBL.DeletePersonaBL(id);
             return RedirectToAction("ListadoPersonas");
         }
 
