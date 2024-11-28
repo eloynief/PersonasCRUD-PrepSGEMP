@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace UI_MAUI.ViewModels
 {
-    public class PersonaVM
+    public class PersonaConNombreVM
     {
 
-        private ObservableCollection<Persona> personas;
+        private ObservableCollection<PersonaConNombreDepartamento> personas;
 
         private Persona personaSeleccionada;
 
@@ -40,10 +40,9 @@ namespace UI_MAUI.ViewModels
         /// <summary>
         /// Listado de personas
         /// </summary>
-        public ObservableCollection<Persona> Personas
+        public ObservableCollection<PersonaConNombreDepartamento> Personas
         {
-            get => new ObservableCollection<Persona>(ListadosBL.ListadoPersonasBL());
-            /**
+            get => personas;
             set
             {
                 if (personas != value)
@@ -52,17 +51,16 @@ namespace UI_MAUI.ViewModels
                     NotifyPropertyChanged();
                 }
             }
-            */
         }
 
         /// <summary>
         /// Constructor del ViewModel
         /// </summary>
-        public PersonaVM()
+        public PersonaConNombreVM()
         {
             // Inicializar las listas con datos de la capa BL
 
-            this.personas = new ObservableCollection<Persona>(ListadosBL.ListadoPersonasBL());
+            this.personas = new ObservableCollection<PersonaConNombreDepartamento>();
         }
 
         /// <summary>

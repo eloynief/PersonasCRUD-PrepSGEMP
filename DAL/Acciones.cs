@@ -78,7 +78,7 @@ namespace DAL
                 UPDATE Personas
                 SET 
                     Nombre = @Nombre,
-                    Apellido = @Apellido,
+                    Apellido = @Apellidos,
                     FechaNac = @FechaNacimiento,
                     Direccion = @Direccion,
                     Foto = @Foto,
@@ -94,6 +94,7 @@ namespace DAL
                 miComando.Parameters.AddWithValue("@Apellidos", persona.Apellido);
                 miComando.Parameters.AddWithValue("@FechaNacimiento", persona.FechaNac);
                 miComando.Parameters.AddWithValue("@Direccion", persona.Direccion);
+                miComando.Parameters.AddWithValue("@Foto", persona.Foto);
                 miComando.Parameters.AddWithValue("@Telefono", persona.Telefono);
                 miComando.Parameters.AddWithValue("@IDDepartamento", persona.IdDepartamento);
                 miComando.Parameters.AddWithValue("@ID", persona.Id);

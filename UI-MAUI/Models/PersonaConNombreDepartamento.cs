@@ -1,40 +1,26 @@
-﻿using Entities;
+﻿using BL;
+using Entities;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace UI_MAUI.ViewModels
 {
-    public class PersonaConNombreDepartamento : INotifyPropertyChanged
+    public class PersonaConNombreDepartamento : Persona
     {
 
         #region Atributos
-        private Persona persona;
-        /// <summary>
-        /// Atributo para la lista de personas
-        /// </summary>
         private string nombreDepartamento;
         #endregion
 
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         #region Propiedades
-
-        public Persona Per
-        {
-            get { return persona; }
-            set
-            {
-                persona = value;
-                NotifyPropertyChanged();
-            }
-        }
 
         /// <summary>
         /// Nombre del departamento al que pertenece la persona
         /// </summary>
         public string NombreDepartamento
         {
-            get { return nombreDepartamento; }
+            get { return ListadosBL.ObtenerNombreDepartamentoBL(IdDepartamento); }
         }
 
         #endregion
@@ -43,7 +29,8 @@ namespace UI_MAUI.ViewModels
 
         public PersonaConNombreDepartamento()
         {
-
+            // Suponiendo que BL.ListadosBL.obtenerNombreDepartamentoBL es un método que retorna el nombre del departamento
+            nombreDepartamento = BL.ListadosBL.ObtenerNombreDepartamentoBL(IdDepartamento);
         }
 
         /// <summary>
@@ -53,6 +40,16 @@ namespace UI_MAUI.ViewModels
         /// <param name="nombreDepartamento">Nombre del departamento asociado</param>
         public PersonaConNombreDepartamento(Persona persona) {
 
+            this.Id=persona.Id;
+            this.Nombre=persona.Nombre;
+            this.Apellido=persona.Apellido;
+            this.Direccion=persona.Direccion;
+            this.FechaNac=persona.FechaNac;
+            this.Foto=persona.Foto;
+            this.Telefono=persona.Telefono;
+            this.IdDepartamento=persona.IdDepartamento;
+
+
             // Suponiendo que BL.ListadosBL.obtenerNombreDepartamentoBL es un método que retorna el nombre del departamento
             nombreDepartamento = BL.ListadosBL.ObtenerNombreDepartamentoBL(persona.IdDepartamento);
 
@@ -60,11 +57,6 @@ namespace UI_MAUI.ViewModels
         }
         #endregion
 
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "Nombre")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
- 
     }
 
 

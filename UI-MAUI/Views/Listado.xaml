@@ -11,36 +11,58 @@
 
 
     <ScrollView>
-    <VerticalStackLayout>
+        <VerticalStackLayout>
+            <Grid RowDefinitions="Auto,*">
 
-        <ListView Grid.Row="0" Grid.Column="0"
-                      ItemsSource="{Binding Personas}" 
-                      SelectedItem="{Binding PersonaSeleccionada}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Frame>
+                <!-- Slider -->
+                <Slider 
+                x:Name="miSlider"
+                Maximum="3600" 
+                Grid.Row="0" />
+                
 
-                            <HorizontalStackLayout>
-                                <Image Source="{Binding Foto}" HeightRequest="60" WidthRequest="60" Aspect="AspectFill" />
-                                <Label Text="{Binding Id}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
-                                <Label Text="{Binding Nombre}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
-                                <Label Text="{Binding Apellido}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18" TextColor="#666" />
-                                <Label Text="{Binding Direccion}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
-                                <Label Text="{Binding FechaNac}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="#333" />
-                                <Label Text="{Binding IdDepartamento}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" TextColor="#666" />
-                            </HorizontalStackLayout>
-                            
-                        </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        
-        
-    </VerticalStackLayout>
-
+                <!-- ListView -->
+                <ListView 
+                Grid.Row="1"
+                ItemsSource="{Binding Personas}" 
+                SelectedItem="{Binding PersonaSeleccionada}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Rotation="{Binding Source={x:Reference miSlider}, Path=Value}" 
+                                   BackgroundColor="#FAFAFA">
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image Source="{Binding Foto}" 
+                                           HeightRequest="60" 
+                                           WidthRequest="60" 
+                                           Aspect="AspectFill" />
+                                        <VerticalStackLayout>
+                                            <Label Text="{Binding Nombre}" 
+                                               FontAttributes="Bold" 
+                                               FontSize="18" 
+                                               TextColor="#333" />
+                                            <Label Text="{Binding Apellido}" 
+                                               FontSize="14" 
+                                               TextColor="#666" />
+                                            <Label Text="{Binding Direccion}" 
+                                               FontSize="14" 
+                                               TextColor="#999" />
+                                            <Label Text="{Binding FechaNac, StringFormat='{}{0:dd/MM/yyyy}'}" 
+                                               FontSize="14" 
+                                               TextColor="#999" />
+                                            <Label Text="{Binding IdDepartamento}" 
+                                               FontSize="14" 
+                                               TextColor="#666" />
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </VerticalStackLayout>
     </ScrollView>
+
 
 </ContentPage>

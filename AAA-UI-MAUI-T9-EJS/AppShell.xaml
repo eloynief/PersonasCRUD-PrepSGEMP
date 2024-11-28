@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AAA_UI_MAUI_T9_EJS.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AAA_UI_MAUI_T9_EJS"
+    Shell.FlyoutBehavior="Disabled"
+    Title="AAA_UI_MAUI_T9_EJS">
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+        <Tab Title="Ejercicios" Icon="icono.png" >
+
+
+
+            <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+            <ShellContent
+            Title="EJ1"
+            ContentTemplate="{DataTemplate local:Views.Ej1}"
+            Route="MainPage" />
+
+
+        </Tab>
+
+
+
+    </FlyoutItem>
+    
+
+</Shell>
