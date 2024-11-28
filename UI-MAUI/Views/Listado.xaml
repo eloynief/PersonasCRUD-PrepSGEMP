@@ -54,6 +54,23 @@
                                                FontSize="14" 
                                                TextColor="#666" />
                                         </VerticalStackLayout>
+                                        
+                                                                            <!-- Botones de Edición y Borrado -->
+                                        <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                                            <Button Text="✏️" 
+                                                BackgroundColor="LightBlue" 
+                                                Command="{Binding BindingContext.EditarPersonaCommand, Source={x:Reference Name=ListView}}" 
+                                                CommandParameter="{Binding}" 
+                                                WidthRequest="40" 
+                                                HeightRequest="40" />
+                                            <Button Text="🗑️" 
+                                                BackgroundColor="LightCoral" 
+                                                Command="{Binding BindingContext.BorrarPersonaCommand, Source={x:Reference Name=ListView}}" 
+                                                CommandParameter="{Binding}" 
+                                                WidthRequest="40" 
+                                                HeightRequest="40" />
+                                        </HorizontalStackLayout>
+
                                     </HorizontalStackLayout>
                                 </Frame>
                             </ViewCell>

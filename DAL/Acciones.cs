@@ -42,7 +42,6 @@ namespace DAL
                 // Ejecutamos el comando
                 miComando.ExecuteNonQuery();
                 comp= true;
-                miConexion.Close();
             }
             catch (Exception ex)
             {
@@ -78,13 +77,13 @@ namespace DAL
                 UPDATE Personas
                 SET 
                     Nombre = @Nombre,
-                    Apellido = @Apellidos,
-                    FechaNac = @FechaNacimiento,
+                    Apellidos = @Apellidos,
+                    FechaNacimiento = @FechaNacimiento,
                     Direccion = @Direccion,
                     Foto = @Foto,
                     Telefono = @Telefono,
                     IDDepartamento = @IDDepartamento
-                WHERE IDPersona = @ID";
+                WHERE ID = @ID";
 
 
                 miComando.Connection = miConexion;

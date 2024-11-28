@@ -34,7 +34,7 @@
 
     <div class="form-group">
         <label asp-for="Foto" class="control-label"></label>
-        @Html.TextBoxFor(model => model.Foto, new { @class = "form-control", type = "date" })
+        @Html.TextBoxFor(model => model.Foto, new { @class = "form-control"})
         <span asp-validation-for="Foto" class="text-danger"></span>
     </div>
 

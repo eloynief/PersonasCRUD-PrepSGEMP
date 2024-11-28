@@ -28,4 +28,10 @@
 
 
     </FlyoutItem>
+
+    <ShellContent
+            Title="Listado"
+            ContentTemplate="{DataTemplate local:Views.EditarPersona}"
+            Route="MainPage" />
+    
 </Shell>

@@ -58,9 +58,9 @@ namespace DAL
                         {
                             oPersona.FechaNac = (DateTime)miLector["FechaNacimiento"];
                         }
-
                         oPersona.Direccion = (string)miLector["Direccion"];
 
+                        oPersona.Foto = (string)miLector["Foto"];
                         oPersona.Telefono = (string)miLector["Telefono"];
                         oPersona.IdDepartamento = (int)miLector["IDDepartamento"];
 
