@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UI_MAUI.Views.EditarPersona"
+             xmlns:miViewmodelA="clr-namespace:UI_MAUI.ViewModels"
+             Title="EditarPersona">
+
+    <ContentPage.BindingContext>
+        <miViewmodelA:PersonaVM />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="Formulario Persona" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+            <!-- Entrada para Nombre -->
+            <Label Text="Nombre:" />
+            <Entry Text="{Binding PersonaSeleccionada.Nombre}" Placeholder="Escribe el nombre" />
+
+            <!-- Entrada para Apellido -->
+            <Label Text="Apellidos:" />
+            <Entry Text="{Binding PersonaSeleccionada.Apellido}" Placeholder="Escribe los apellidos" />
+
+            <!-- Entrada para Dirección -->
+            <Label Text="Dirección:" />
+            <Entry Text="{Binding PersonaSeleccionada.Direccion}" Placeholder="Escribe la dirección" />
+
+            <!-- Fecha de Nacimiento -->
+            <Label Text="Fecha de Nacimiento:" />
+            <DatePicker Date="{Binding PersonaSeleccionada.FechaNac}" />
+
+            <!-- ID Departamento -->
+            <Label Text="ID Departamento:" />
+            <Entry Text="{Binding PersonaSeleccionada.IdDepartamento}" Placeholder="ID del Departamento" Keyboard="Numeric" />
+
+            <!-- Botones de acción -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Guardar" Command="{Binding GuardarPersonaCommand}" />
+                <Button Text="Cancelar" Command="{Binding CancelarEdicionCommand}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="UI_B.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UI_B"
+    Shell.FlyoutBehavior="Disabled"
+    Title="UI_B">
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+        <ShellContent
+        Title="Listado"
+        ContentTemplate="{DataTemplate local:Views.Listado}"
+        Route="MainPage" />
+
+    </FlyoutItem>
+    
+    <ShellContent
+        Title="Crear"
+        ContentTemplate="{DataTemplate local:Views.Crear}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Editar"
+        ContentTemplate="{DataTemplate local:Views.Editar}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Borrar"
+        ContentTemplate="{DataTemplate local:Views.Borrar}"
+        Route="MainPage" />
+
+
+</Shell>

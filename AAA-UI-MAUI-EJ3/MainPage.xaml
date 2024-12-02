@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
+             xmlns:miViewmodel="clr-namespace:AAA_UI_MAUI_EJ3.ViewModels"
+             x:Class="AAA_UI_MAUI_EJ3.MainPage">
+
+    <ContentPage.BindingContext>
+        <miViewmodel:CalculadoraVM />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <!-- Pantalla de la calculadora -->
+            <Label Text="{Binding Pantalla}" FontSize="32" HorizontalOptions="Center" />
+
+            <!-- Fila de botones para la calculadora -->
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Botones de la calculadora -->
+                <Button Text="1" Margin="2" Grid.Row="0" Grid.Column="0" Command="{Binding PulsarCommand}" CommandParameter="1" />
+                <Button Text="2" Margin="2" Grid.Row="0" Grid.Column="1" Command="{Binding PulsarCommand}" CommandParameter="2" />
+                <Button Text="3" Margin="2" Grid.Row="0" Grid.Column="2" Command="{Binding PulsarCommand}" CommandParameter="3" />
+                <Button Text="+" Margin="2" Grid.Row="0" Grid.Column="3" Command="{Binding PulsarCommand}" CommandParameter="+" />
+
+                <Button Text="4" Margin="2" Grid.Row="1" Grid.Column="0" Command="{Binding PulsarCommand}" CommandParameter="4" />
+                <Button Text="5" Margin="2" Grid.Row="1" Grid.Column="1" Command="{Binding PulsarCommand}" CommandParameter="5" />
+                <Button Text="6" Margin="2" Grid.Row="1" Grid.Column="2" Command="{Binding PulsarCommand}" CommandParameter="6" />
+                <Button Text="-" Margin="2" Grid.Row="1" Grid.Column="3" Command="{Binding PulsarCommand}" CommandParameter="-" />
+
+                <Button Text="7" Margin="2" Grid.Row="2" Grid.Column="0" Command="{Binding PulsarCommand}" CommandParameter="7" />
+                <Button Text="8" Margin="2" Grid.Row="2" Grid.Column="1" Command="{Binding PulsarCommand}" CommandParameter="8" />
+                <Button Text="9" Margin="2" Grid.Row="2" Grid.Column="2" Command="{Binding PulsarCommand}" CommandParameter="9" />
+                <Button Text="*" Margin="2" Grid.Row="2" Grid.Column="3" Command="{Binding PulsarCommand}" CommandParameter="*" />
+
+                <Button Text="C" Margin="2" Grid.Row="3" Grid.Column="0" Command="{Binding LimpiarCommand}" />
+                <Button Text="0" Margin="2" Grid.Row="3" Grid.Column="1" Command="{Binding PulsarCommand}" CommandParameter="0" />
+                <Button Text="=" Margin="2" Grid.Row="3" Grid.Column="2" Command="{Binding OperarCommand}" />
+                <Button Text="/" Margin="2" Grid.Row="3" Grid.Column="3" Command="{Binding PulsarCommand}" CommandParameter="/" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

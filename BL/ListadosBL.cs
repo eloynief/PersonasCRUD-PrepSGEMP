@@ -14,7 +14,7 @@ namespace BL
         /// <returns></returns>
         public static List<Persona> ListadoPersonasBL()
         {
-            return Listados.ListadoPersonasAZURE();
+            return Listados.ListadoPersonasTest();
         }
         /// <summary>
         /// capa negocios de listadoDepartamentos

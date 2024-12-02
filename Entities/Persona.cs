@@ -72,6 +72,7 @@
             set { telefono = value; }
         }
 
+
         #endregion
 
         #region constructores

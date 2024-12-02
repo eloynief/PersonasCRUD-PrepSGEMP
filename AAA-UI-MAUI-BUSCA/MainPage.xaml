@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:miViewmodelA="clr-namespace:AAA_UI_MAUI_BUSCA.ViewModels"
+             x:Class="AAA_UI_MAUI_BUSCA.MainPage">
+
+    <ContentPage.BindingContext>
+        <miViewmodelA:PersonaVM></miViewmodelA:PersonaVM>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid RowDefinitions="Auto,*">
+                <!-- SearchBar -->
+
+                <!-- Entry para búsqueda -->
+                <HorizontalStackLayout Spacing="10">
+                    <Entry 
+                Placeholder="Buscar persona..."
+                Text="{Binding TextoBusqueda}" 
+                HorizontalOptions="FillAndExpand" />
+
+                    <!-- Botón para ejecutar la búsqueda -->
+                    <Button 
+                Text="Buscar"
+                Command="{Binding BuscarCommand}" />
+                </HorizontalStackLayout>
+
+                <ListView 
+    Grid.Row="1"
+    ItemsSource="{Binding PersonasFiltradas}" 
+    SelectedItem="{Binding PersonaSeleccionada}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="#FAFAFA">
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image Source="{Binding Foto}" 
+                               HeightRequest="60" 
+                               WidthRequest="60" 
+                               Aspect="AspectFill" />
+                                        <VerticalStackLayout>
+                                            <Label Text="{Binding Nombre}" 
+                                   FontAttributes="Bold" 
+                                   FontSize="18" 
+                                   TextColor="#333" />
+                                            <Label Text="{Binding Apellido}" 
+                                   FontSize="14" 
+                                   TextColor="#666" />
+                                            <Label Text="{Binding Direccion}" 
+                                   FontSize="14" 
+                                   TextColor="#999" />
+                                            <Label Text="{Binding FechaNac, StringFormat='{}{0:dd/MM/yyyy}'}" 
+                                   FontSize="14" 
+                                   TextColor="#999" />
+                                            <Label Text="{Binding IdDepartamento}" 
+                                   FontSize="14" 
+                                   TextColor="#666" />
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

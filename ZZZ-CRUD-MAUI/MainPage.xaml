@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:miViewModelA="clr-namespace:ZZZ_CRUD_MAUI.ViewModels"
+             
+             x:Class="ZZZ_CRUD_MAUI.MainPage">
+
+    <ContentPage.BindingContext>
+        <miViewModelA:PersonaVM></miViewModelA:PersonaVM>
+    </ContentPage.BindingContext>
+    
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+
+
+
+
+            <StackLayout Padding="20">
+                <Label Text="Editar Persona" FontSize="24" HorizontalOptions="Center" />
+
+                <!-- Nombre -->
+                <Entry Text="{Binding Persona.Nombre}" Placeholder="Nombre" />
+
+                <!-- Apellido -->
+                <Entry Text="{Binding Persona.Apellido}" Placeholder="Apellido" />
+
+                <!-- Fecha de Nacimiento -->
+                <DatePicker Date="{Binding Persona.FechaNac}" />
+
+                <!-- Dirección -->
+                <Entry Text="{Binding Persona.Direccion}" Placeholder="Dirección" />
+
+                <!-- Teléfono -->
+                <Entry Text="{Binding Persona.Telefono}" Placeholder="Teléfono" />
+
+                <!-- Departamento -->
+                <Picker ItemsSource="{Binding Departamentos}"
+                SelectedItem="{Binding SelectedDepartamento}"
+                ItemDisplayBinding="{Binding Nombre}" />
+
+                <!-- Guardar botón -->
+                <Button Text="Guardar"
+                Command="{Binding EditarPersonaCommand}"
+                IsEnabled="{Binding Persona.Nombre}" />
+
+            </StackLayout>
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
