@@ -42,6 +42,9 @@ namespace BL
         /// <returns></returns>
         public static int DeletePersonaBL(int id)
         {
+
+
+
             return DAL.Acciones.DeletePersonaDAL(id);
         }
 

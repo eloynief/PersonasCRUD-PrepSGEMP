@@ -27,6 +27,11 @@
         Route="MainPage" />
 
     <ShellContent
+        Title="Detalles"
+        ContentTemplate="{DataTemplate local:Views.Detalles}"
+        Route="MainPage" />
+
+    <ShellContent
         Title="Editar"
         ContentTemplate="{DataTemplate local:Views.Editar}"
         Route="MainPage" />
