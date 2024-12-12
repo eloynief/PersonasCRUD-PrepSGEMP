@@ -46,7 +46,7 @@ namespace DAL
 
 
 
-            miConexion.ConnectionString = EnlaceBBDD.enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloynievesiesnervionbase.database.windows.net", "eloybbdd", "prueba", "fernandoG321");
             try
             {
                 miConexion.Open();
@@ -62,22 +62,18 @@ namespace DAL
                     while (miLector.Read())
 
                     {
-                        oPersona = new Persona();
-                        oPersona.Id = (int)miLector["ID"];
-                        oPersona.Nombre = (string)miLector["Nombre"];
-                        oPersona.Apellido = (string)miLector["Apellidos"];
 
-                        if (miLector["FechaNacimiento"] != System.DBNull.Value)
+                        oPersona = new Persona
                         {
-                            oPersona.FechaNac = (DateTime)miLector["FechaNacimiento"];
-                        }
-
-                        oPersona.Direccion = (string)miLector["Direccion"];
-
-                        oPersona.Foto = (string)miLector["Foto"];
-
-                        oPersona.Telefono = (string)miLector["Telefono"];
-                        oPersona.IdDepartamento = (int)miLector["IDDepartamento"];
+                            Id = (int)miLector["ID"],
+                            Nombre = miLector["Nombre"] != DBNull.Value ? (string)miLector["Nombre"] : string.Empty,
+                            Apellido = miLector["Apellidos"] != DBNull.Value ? (string)miLector["Apellidos"] : string.Empty,
+                            FechaNac = miLector["FechaNacimiento"] != DBNull.Value ? (DateTime)miLector["FechaNacimiento"] : DateTime.Now,
+                            Direccion = miLector["Direccion"] != DBNull.Value ? (string)miLector["Direccion"] : string.Empty,
+                            Foto = miLector["Foto"] != DBNull.Value ? (string)miLector["Foto"] : string.Empty,
+                            Telefono = miLector["Telefono"] != DBNull.Value ? (string)miLector["Telefono"] : string.Empty,
+                            IdDepartamento = miLector["IDDepartamento"] != DBNull.Value ? (int)miLector["IDDepartamento"] : 0
+                        };
 
                         listado.Add(oPersona);
                     }
@@ -91,7 +87,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                //throw ex;
+                throw ex;
             }
             finally
             {
@@ -112,7 +108,7 @@ namespace DAL
             List<Departamento> listado = new List<Departamento>();
             SqlConnection miConexion = new SqlConnection();
 
-            miConexion.ConnectionString = EnlaceBBDD.enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloynievesiesnervionbase.database.windows.net", "eloybbdd", "prueba", "fernandoG321");
 
             try
             {

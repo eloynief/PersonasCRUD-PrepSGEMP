@@ -71,9 +71,25 @@ namespace UI.Controllers
         [HttpPost]
         public IActionResult ConfirmarBorrado(int id)
         {
-            AccionesBL.DeletePersonaBL(id);
+            try
+            {
+                // Llamar a la lógica de negocio para eliminar
+                int filasAfectadas = AccionesBL.DeletePersonaBL(id);
+                if (filasAfectadas == 0)
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores y mostrar un mensaje adecuado
+                ModelState.AddModelError("", "Error al eliminar la persona: " + ex.Message);
+                return View("Error");
+            }
+
             return RedirectToAction("ListadoPersonas");
         }
+
 
 
 

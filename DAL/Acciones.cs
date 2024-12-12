@@ -19,7 +19,7 @@ namespace DAL
         {
             bool comp=false;
             SqlConnection miConexion = new SqlConnection();
-            miConexion.ConnectionString = EnlaceBBDD.enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloynievesiesnervionbase.database.windows.net", "eloybbdd", "prueba", "fernandoG321");
 
             try
             {
@@ -27,8 +27,8 @@ namespace DAL
 
                 // Creamos el comando con la consulta SQL
                 SqlCommand miComando = new SqlCommand();
-                miComando.CommandText = "INSERT INTO Personas (Nombre, Apellidos, FechaNacimiento, Direccion, Telefono, IDDepartamento) " +
-                                        "VALUES (@Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Telefono, @IDDepartamento)";
+                miComando.CommandText = "INSERT INTO Personas (Nombre, Apellidos, FechaNacimiento, Direccion, Foto, Telefono, IDDepartamento) " +
+                                        "VALUES (@Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Foto, @Telefono, @IDDepartamento)";
                 miComando.Connection = miConexion;
 
                 // Agregamos los parámetros al comando
@@ -36,8 +36,10 @@ namespace DAL
                 miComando.Parameters.AddWithValue("@Apellidos", persona.Apellido);
                 miComando.Parameters.AddWithValue("@FechaNacimiento", persona.FechaNac);
                 miComando.Parameters.AddWithValue("@Direccion", persona.Direccion);
+                miComando.Parameters.AddWithValue("@Foto", persona.Foto);
                 miComando.Parameters.AddWithValue("@Telefono", persona.Telefono);
                 miComando.Parameters.AddWithValue("@IDDepartamento", persona.IdDepartamento);
+                miComando.Parameters.AddWithValue("@ID", persona.Id);
 
                 // Ejecutamos el comando
                 miComando.ExecuteNonQuery();
@@ -67,7 +69,7 @@ namespace DAL
         {
             bool comp = false;
             SqlConnection miConexion = new SqlConnection();
-            miConexion.ConnectionString = EnlaceBBDD.enlace("eloybadat.database.windows.net", "eloybadat", "prueba", "fernandoG321");
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloynievesiesnervionbase.database.windows.net", "eloybbdd", "prueba", "fernandoG321");
 
             try
             {
@@ -78,13 +80,13 @@ namespace DAL
                 UPDATE Personas
                 SET 
                     Nombre = @Nombre,
-                    Apellido = @Apellidos,
-                    FechaNac = @FechaNacimiento,
+                    Apellidos = @Apellidos,
+                    FechaNacimiento = @FechaNacimiento,
                     Direccion = @Direccion,
                     Foto = @Foto,
                     Telefono = @Telefono,
                     IDDepartamento = @IDDepartamento
-                WHERE IDPersona = @ID";
+                WHERE ID = @ID";
 
 
                 miComando.Connection = miConexion;
@@ -130,6 +132,8 @@ namespace DAL
         {
             int numeroFilasAfectadas = 0;
             SqlConnection miConexion = EnlaceBBDD.getConexion();
+            miConexion.ConnectionString = EnlaceBBDD.enlace("eloynievesiesnervionbase.database.windows.net", "eloybbdd", "prueba", "fernandoG321");
+
             try
             {
 
