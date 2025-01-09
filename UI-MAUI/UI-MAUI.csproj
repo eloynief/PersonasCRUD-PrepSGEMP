@@ -63,10 +63,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\Utilities\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\BL\BL.csproj" />
 	  <ProjectReference Include="..\Entities\Entities.csproj" />
 	</ItemGroup>

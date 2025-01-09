@@ -23,13 +23,13 @@ namespace DAL
 
 
         public static List<Persona> ListadoPersonasTest()
-        {  
+        {
             List<Persona> lista = new List<Persona>    {
                 new Persona(1, "Juan", "Pérez", new DateTime(1990, 5, 21), "Calle Falsa 123", "https://via.placeholder.com/60", "123456789", 1),
                 new Persona(2, "María", "López", new DateTime(1985, 7, 14), "Avenida Siempreviva 742", "https://via.placeholder.com/60", "987654321", 2),
                 new Persona(3, "Carlos", "García", new DateTime(2000, 1, 10), "Boulevard del Sol 456", "https://via.placeholder.com/60", "456123789", 3)
             };
-            return lista; 
+            return lista;
         }
 
 
