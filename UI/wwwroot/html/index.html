@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Personas</title>
+</head>
+<body>
+    <h1>Listado de Personas</h1>
+    <div id="persona">
+        <!-- Aquí se mostrarán los datos -->
+    </div>
+
+    <!-- Formulario para Crear o Actualizar Personas -->
+    <form id="personaForm" onsubmit="return false;">
+        <h2 id="formTitle">Agregar Persona</h2>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" required><br><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion"><br><br>
+
+        <label for="fechaNac">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNac"><br><br>
+
+        <label for="foto">Foto (URL):</label>
+        <input type="text" id="foto"><br><br>
+
+        <input type="hidden" id="idPersona">
+        <button onclick="guardarPersona()">Guardar</button>
+        <button type="reset" onclick="resetForm()">Cancelar</button>
+    </form>
+
+    <button onclick="CargaPersonas()">Cargar Personas</button>
+
+    <script src="C:\Users\enieves\Desktop\SGEMP_DEINT\PROYECTO ASP MAUI\All\UI\wwwroot\js\Personas.js"></script>
+</body>
+</html>
