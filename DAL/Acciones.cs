@@ -44,7 +44,6 @@ namespace DAL
                 // Ejecutamos el comando
                 miComando.ExecuteNonQuery();
                 comp= true;
-                miConexion.Close();
             }
             catch (Exception ex)
             {

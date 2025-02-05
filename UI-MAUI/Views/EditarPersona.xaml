@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UI_MAUI.Views.EditarPersona"
              xmlns:miViewmodelA="clr-namespace:UI_MAUI.ViewModels"
-             Title="EditarPersona">
 
     <ContentPage.BindingContext>
         <miViewmodelA:PersonaVM />
@@ -43,5 +42,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
-    
+
 </ContentPage>

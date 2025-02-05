@@ -65,15 +65,13 @@ namespace DAL
 
                         oPersona = new Persona
                         {
-                            Id = (int)miLector["ID"],
-                            Nombre = miLector["Nombre"] != DBNull.Value ? (string)miLector["Nombre"] : string.Empty,
-                            Apellido = miLector["Apellidos"] != DBNull.Value ? (string)miLector["Apellidos"] : string.Empty,
-                            FechaNac = miLector["FechaNacimiento"] != DBNull.Value ? (DateTime)miLector["FechaNacimiento"] : DateTime.Now,
-                            Direccion = miLector["Direccion"] != DBNull.Value ? (string)miLector["Direccion"] : string.Empty,
-                            Foto = miLector["Foto"] != DBNull.Value ? (string)miLector["Foto"] : string.Empty,
-                            Telefono = miLector["Telefono"] != DBNull.Value ? (string)miLector["Telefono"] : string.Empty,
-                            IdDepartamento = miLector["IDDepartamento"] != DBNull.Value ? (int)miLector["IDDepartamento"] : 0
-                        };
+                            oPersona.FechaNac = (DateTime)miLector["FechaNacimiento"];
+                        }
+
+                        oPersona.Direccion = (string)miLector["Direccion"];
+
+                        oPersona.Telefono = (string)miLector["Telefono"];
+                        oPersona.IdDepartamento = (int)miLector["IDDepartamento"];
 
                         listado.Add(oPersona);
                     }

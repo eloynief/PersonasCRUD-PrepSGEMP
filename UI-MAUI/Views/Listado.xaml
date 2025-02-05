@@ -54,12 +54,6 @@
                                                FontSize="14" 
                                                TextColor="#666" />
                                         </VerticalStackLayout>
-                                        <Button
-                                            Text="*" BackgroundColor="LightBlue"  
-                                            Command="{Binding BindingContext.EditarPersonaCommand}"
-                                            Clicked="IrPaginaEditar"
-                                            WidthRequest="40" 
-                                            HeightRequest="40"/>
                                     </HorizontalStackLayout>
                                 </Frame>
                             </ViewCell>
