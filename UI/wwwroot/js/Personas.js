@@ -134,30 +134,63 @@ function obtencion(arrayPersonas) {
                 <strong>Apellido:</strong> ${persona.apellido}<br>
                 <strong>Dirección:</strong> ${persona.direccion}<br>
                 <strong>Fecha de Nacimiento:</strong> ${persona.fechaNac}<br>
-                <img src="${persona.foto}"/><br>
+                <img src="${persona.foto}" alt="Foto de ${persona.nombre}" style="width:100px; height:100px;"><br>
 
-                <button >Editar</button>
-                <button >Borrar</button>
-
-
+                <!-- Botones para editar y borrar -->
+                <button onclick="editarPersona(${persona.id})">Editar</button>
+                <button onclick="borrarPersona(${persona.id})">Borrar</button>
             </li>
         `;
     });
 
     mostrador += "</ul>";
 
-    alert("Listota gorda de personas");
-
     // Mostrar los datos en el elemento con ID "persona"
     document.getElementById("persona").innerHTML = mostrador;
 }
+
 
 //////////////////////////////////////////////////////////////////////////////
 
 
 
 
+//
+function formulario() {
+    const node = document.createElement("li");
+    let cosa = document.createElement('div');
 
+    cosa.id = 'inserta';
+
+    cosa.innerHTML=`
+                    <div class="modal-content">
+                        <div class="modal-header">Añadir Persona</div>
+                        <form id="personaForm" onsubmit="return false;">
+                            <label for="nombre">Nombre:</label><br>
+                            <input type="text" id="nombre" required><br><br>
+
+                            <label for="apellido">Apellido:</label><br>
+                            <input type="text" id="apellido" required><br><br>
+
+                            <label for="direccion">Dirección:</label><br>
+                            <input type="text" id="direccion"><br><br>
+
+                            <label for="fechaNac">Fecha de Nacimiento:</label><br>
+                            <input type="date" id="fechaNac"><br><br>
+
+                            <label for="foto">Foto (URL):</label><br>
+                            <input type="url" id="foto"><br><br>
+
+                            <button type="submit" onclick="guardarPersona()">Guardar</button>
+                            <button type="button" onclick="cerrarModal()">Cancelar</button>
+                        </form>
+                    </div>
+    `;
+
+    document.body.appendChild(cosa);
+
+
+}
 
 
 
@@ -209,8 +242,27 @@ function guardarPersona() {
     miLlamada.send(JSON.stringify(persona));
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Editar persona
 function editarPersona(id) {
+    // Mostrar el formulario si no está visible
+    formulario();
     const miLlamada = new XMLHttpRequest();
     miLlamada.open("GET", `${apiUrl}/${id}`);
 
